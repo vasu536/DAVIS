@@ -1,6 +1,6 @@
 function dvs_frames = create_dvs_frames(dvs_events, period)
-%% Period should be in milliseconds
-%% Initialize dvs frame as a gray image
+% Period should be in milliseconds
+% Initialize dvs frame as a gray image
 dvs_frame.timestamp = 0;
 dvs_frame.frame = 128*ones(180,240,'uint8');
 dvs_frames = {};
@@ -22,7 +22,7 @@ for i=1:length(dvs_events)
             dvs_frame.frame(dvs_events{i}.Y+1,dvs_events{i}.X+1) = 255*dvs_events{i}.Polarity;
             dvs_frames{frame_index} = dvs_frame;
         else 
-            %% Reinitialize the image if it's a new timestamp
+            % Reinitialize the image if it's a new timestamp
             dvs_frame.timestamp = current_time;
             dvs_frame.frame = 128*ones(180,240,'uint8');
             dvs_frame.frame(dvs_events{i}.Y+1,dvs_events{i}.X+1) = 255*dvs_events{i}.Polarity;

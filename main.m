@@ -4,8 +4,8 @@ clear;
 
 %% path and name of the file we want to open
 
-str1 = "C:\Users\yaphe\Desktop\Research\DAVIS240\"; %location/directory
-str2 = "shaking_arm.bag"; % name of the bag file
+str1 = "/home/vasu536/WorkSpace/GIT/DAVIS/bagfiles/"; %location/directory
+str2 = "color_object_stationary_background_1.bag"; % name of the bag file
 
 %%
 
@@ -42,8 +42,21 @@ end
 %     timestamp(i) = dvs_events_full{i}.Ts.Sec*10^9+dvs_events_full{i}.Ts.Nsec;
 % end
 
-dvs_frames = create_dvs_frames(dvs_events_full(50000:55000),0);
-subplot_aps_dvs(dvs_image_raw,dvs_frames);
+dvs_frames = create_dvs_frames(dvs_events_full(1:end),5);
+F = subplot_aps_dvs(dvs_image_raw,dvs_frames);
 % for i=1:length(dvs_frames)
 %     imwrite(dvs_frames{i}.frame,sprintf('dvs_frames/frame_%d.png', i));
 % end
+
+%%
+% 
+% writerObj = VideoWriter('myVideo.avi');
+% writerObj.FrameRate = 10;
+% open(writerObj);
+% 
+% for i = 1:length(F)
+%     frame = F(i);
+%      writeVideo(writerObj, frame);
+% end
+% 
+% close(writerObj);
